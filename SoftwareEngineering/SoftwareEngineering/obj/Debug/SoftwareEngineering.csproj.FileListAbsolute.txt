@@ -1,0 +1,14 @@
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.exe.config
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.exe
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.pdb
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csprojAssemblyReference.cache
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csproj.CoreCompileInputs.cache
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.exe
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.pdb
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\NewsAPI.dll
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\NewsAPI.xml
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Luke\Downloads\UniWork\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csproj.CopyComplete
+C:\Users\computing\Downloads\New folder\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.exe
+C:\Users\computing\Downloads\New folder\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.pdb
