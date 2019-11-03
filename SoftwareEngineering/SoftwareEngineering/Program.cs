@@ -10,6 +10,11 @@ using NewsAPI.Models;
 using NewsAPI.Constants;
 using Newtonsoft.Json;
 
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
+using SpotifyAPI.Web.Auth;
+
 
 namespace SoftwareEngineering
 {
@@ -44,7 +49,19 @@ namespace SoftwareEngineering
             }
         }
 
-        static void Main(string[] args)
+        private static SpotifyWebAPI _spotify;
+        public static async void getSpotify()
+        {
+            //ClientID and SecretID
+            CredentialsAuth auth = new CredentialsAuth("088f576b5164473c99d0f31d261d1501", "d42f8386acbe4f6b8894ef9ccae9ef0a");
+            Token token = await auth.GetToken();
+            _spotify = new SpotifyWebAPI()
+            {
+                AccessToken = token.AccessToken,
+                TokenType = token.TokenType
+            };
+        }
+        public static void  Main(string[] args)
         {
             //Get the news, change the url to get different news
             var url = "https://newsapi.org/v2/top-headlines?" + "country=us&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
@@ -59,7 +76,17 @@ namespace SoftwareEngineering
                 Console.WriteLine(deserializedNews.articles[i].title);
             }
             Console.ReadLine();
+
+            getSpotify();
+            Console.ReadLine();
+
+            SearchItem item = _spotify.SearchItems("news", SearchType.Track);
+            for (int i = 0; i < item.Tracks.Items.Count; i++)
+            {
+                Console.WriteLine(item.Tracks.Items[i].Name);
+            }
             
+            Console.ReadLine();
         }
 
     }
