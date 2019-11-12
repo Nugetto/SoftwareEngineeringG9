@@ -63,6 +63,61 @@ namespace SoftwareEngineering
         }
         public static void  Main(string[] args)
         {
+            bool incorrectInput = false;
+            int userSelection = -1;
+
+            do
+            {
+                Console.Clear();
+                SearchSpotify();
+                Console.WriteLine("==*****   SPOTIFY PLAYLIST FROM NEWS CREATOR THING   *****==\n\n\n");
+                Console.WriteLine(" * Please select an option from belows\n");
+                Console.WriteLine(" 1 > Create playlist from news category\n 2 > Create playlist from country-specific news\n 3 > Random news selection");
+                Console.Write("\n > ");
+
+                
+                try
+                {
+                    userSelection = Convert.ToInt16(Console.ReadLine());
+                    if (userSelection < 1 || userSelection > 3)
+                    {
+                        Console.WriteLine("\n * Incorrect Input - Press Enter to Continue.");
+                        incorrectInput = true;
+                    }
+
+                }
+                catch
+                {
+                    userSelection = -1;
+                    Console.WriteLine("\n * Incorrect Input Format - Press Enter to Continue.");
+                    incorrectInput = true;
+                }
+
+                Console.ReadLine();
+            } while (incorrectInput == true);
+            Console.Clear();
+
+            switch (userSelection)
+            {
+                case 1:
+                    //Do things/call function for option 1
+                    break;
+                case 2:
+                    //Do things/call function for option 2
+                    break;
+                case 3:
+                    //Do things/call function for option 3
+                    break;
+                default:
+                    break;
+            }
+
+            Console.ReadLine();
+        }
+
+
+        static void ConnectToNews()
+        {
             //Get the news, change the url to get different news
             var url = "https://newsapi.org/v2/top-headlines?" + "country=us&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
             var json = new WebClient().DownloadString(url);
@@ -77,6 +132,12 @@ namespace SoftwareEngineering
             }
             Console.ReadLine();
 
+        }
+
+
+        static void SearchSpotify()
+        {
+
             getSpotify();
             Console.ReadLine();
 
@@ -85,7 +146,7 @@ namespace SoftwareEngineering
             {
                 Console.WriteLine(item.Tracks.Items[i].Name);
             }
-            
+
             Console.ReadLine();
         }
 
