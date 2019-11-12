@@ -50,6 +50,7 @@ namespace SoftwareEngineering
         }
 
         private static SpotifyWebAPI _spotify;
+
         public static async void getSpotify()
         {
             //ClientID and SecretID
@@ -61,6 +62,7 @@ namespace SoftwareEngineering
                 TokenType = token.TokenType
             };
         }
+
         public static void  Main(string[] args)
         {
             bool incorrectInput = false;
@@ -69,7 +71,6 @@ namespace SoftwareEngineering
             do
             {
                 Console.Clear();
-                SearchSpotify();
                 Console.WriteLine("==*****   SPOTIFY PLAYLIST FROM NEWS CREATOR THING   *****==\n\n\n");
                 Console.WriteLine(" * Please select an option from belows\n");
                 Console.WriteLine(" 1 > Create playlist from news category\n 2 > Create playlist from country-specific news\n 3 > Random news selection");
@@ -103,7 +104,44 @@ namespace SoftwareEngineering
                     //Do things/call function for option 1
                     break;
                 case 2:
-                    //Do things/call function for option 2
+                    //get uses location to determine country automatically
+                    do
+                    {
+                        Console.WriteLine("Select a country:\n 1 > Great Britain\n 2 > America\n 3 > Australia");
+                        Console.Write("\n > ");
+                        try
+                        {
+                            userSelection = Convert.ToInt16(Console.ReadLine());
+                            if (userSelection < 1 || userSelection > 3)
+                            {
+                                Console.WriteLine("\n * Incorrect Input - Press Enter to Continue.");
+                                incorrectInput = true;
+                            }
+
+                        }
+                        catch
+                        {
+                            userSelection = -1;
+                            Console.WriteLine("\n * Incorrect Input Format - Press Enter to Continue.");
+                            incorrectInput = true;
+                        }
+                    } while (incorrectInput == true) ;
+
+                    switch (userSelection)
+                    {
+                        case 1:
+                            ConnectToNews("gb");
+                            break;
+                        case 2:
+                            ConnectToNews("us");
+                            break;
+                        case 3:
+                            ConnectToNews("au");
+                            break;
+                        default:
+                            break;
+                    }
+                     //Do things/call function for option 2
                     break;
                 case 3:
                     //Do things/call function for option 3
@@ -116,10 +154,10 @@ namespace SoftwareEngineering
         }
 
 
-        static void ConnectToNews()
+        static void ConnectToNews(string searchCountry)
         {
             //Get the news, change the url to get different news
-            var url = "https://newsapi.org/v2/top-headlines?" + "country=us&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
+            var url = "https://newsapi.org/v2/top-headlines?" + "country=" + searchCountry + "&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
             var json = new WebClient().DownloadString(url);
 
             //Using Newtonsoft.Json to deserialise the Json as a News.Rootobject Object 
@@ -131,17 +169,25 @@ namespace SoftwareEngineering
                 Console.WriteLine(deserializedNews.articles[i].title);
             }
             Console.ReadLine();
-
+            SearchSpotify(deserializedNews);
         }
 
 
-        static void SearchSpotify()
+        static void SearchSpotify(News.Rootobject news)
         {
 
             getSpotify();
+            Console.WriteLine("Enter to start search");
             Console.ReadLine();
 
-            SearchItem item = _spotify.SearchItems("news", SearchType.Track);
+            
+
+            SearchItem item = _spotify.SearchItems("war" + "news", SearchType.Track);
+            //freaquency analysis on all headlines retrieved
+            //Loop spotify search for the top 5(?) words
+            //Total ammount of songs/ 5 rounded up is the ammount of songs needed for each word
+            //Might need to remove some random songs
+
             for (int i = 0; i < item.Tracks.Items.Count; i++)
             {
                 Console.WriteLine(item.Tracks.Items[i].Name);
