@@ -76,7 +76,6 @@ namespace SoftwareEngineering
                 Console.WriteLine(" 1 > Create playlist from news category\n 2 > Create playlist from your countries news\n 3 > Random news selection");
                 Console.Write("\n > ");
 
-                
                 try
                 {
                     userSelection = Convert.ToInt16(Console.ReadLine());
@@ -84,28 +83,31 @@ namespace SoftwareEngineering
                     {
                         Console.WriteLine("\n * Incorrect Input - Press Enter to Continue.");
                         incorrectInput = true;
+                        Console.ReadLine();
                     }
-
+                    else
+                    {
+                        incorrectInput = false;
+                    }
                 }
                 catch
                 {
                     userSelection = -1;
                     Console.WriteLine("\n * Incorrect Input Format - Press Enter to Continue.");
                     incorrectInput = true;
+                    Console.ReadLine();
                 }
-                
+
             } while (incorrectInput == true);
             Console.Clear();
 
             switch (userSelection)
             {
                 case 1: //News category specific
-
+                    ConnectToNews("category=" + getNewsCategory() + "&country=gb");
                     break;
                 case 2: //Country specific case
-
-                    ConnectToNews(GetCountryCode());
-
+                    ConnectToNews("country=" + GetCountryCode());
                     break;
                 case 3: //Random news selection?
 
@@ -118,10 +120,10 @@ namespace SoftwareEngineering
         }
 
 
-        static void ConnectToNews(string searchCountry)
+        static void ConnectToNews(string searchPerameters)
         {
             //Get the news, change the url to get different news
-            var url = "https://newsapi.org/v2/top-headlines?" + "country=" + searchCountry + "&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
+            var url = "https://newsapi.org/v2/top-headlines?" + searchPerameters + "&" + "apiKey=2cdba516b7024c7eb765e9f0b186c0eb";
             var json = new WebClient().DownloadString(url);
 
             //Using Newtonsoft.Json to deserialise the Json as a News.Rootobject Object 
@@ -135,10 +137,90 @@ namespace SoftwareEngineering
             SearchSpotify(deserializedNews);
         }
 
+        //Asks the user how long they want their playlist to be with exception handling
+        static int getListLength()
+        {
+            bool incorrectInput = false;
+            int userSelection;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(" * How many songs would you like in the playlist? (5-100)");
+                Console.Write(" > ");
+                try
+                {
+                    userSelection = Convert.ToInt16(Console.ReadLine());
+                    if (userSelection < 5 || userSelection > 100) //Playlist must be longer than 5 (need to use top 5 keywords) and less than 100 items
+                    {
+                        Console.WriteLine("\n * Incorrect Input - Press Enter to Continue.");
+                        incorrectInput = true;
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        incorrectInput = false;
+                    }
+                }
+                catch
+                {
+                    userSelection = -1;
+                    Console.WriteLine("\n * Incorrect Input Format - Press Enter to Continue.");
+                    incorrectInput = true;
+                    Console.ReadLine();
+                }
+
+            } while (incorrectInput == true);
+            return userSelection;
+        }
+
+        //User selects the category they want their news from with exception handling
+        public static string getNewsCategory()
+        {
+            bool incorrectInput = false;
+            int userSelection = -1;
+            string[] possibleCategories = { "Business", "Entertainment", "General", "Health", "Science", "Sports", "Technology" };
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(" * Please select a news category from the options below\n");
+                for (int i = 0; i < possibleCategories.Length; i++)
+                {
+                    Console.WriteLine(i + 1 + " > " + possibleCategories[i]);
+                }
+                Console.Write("\n > ");
+
+                try
+                {
+                    userSelection = Convert.ToInt16(Console.ReadLine());
+                    if (userSelection < 1 || userSelection > possibleCategories.Length)
+                    {
+                        Console.WriteLine("\n * Incorrect Input - Press Enter to Continue.");
+                        incorrectInput = true;
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        incorrectInput = false;
+                    }
+                }
+                catch
+                {
+                    userSelection = -1;
+                    Console.WriteLine("\n * Incorrect Input Format - Press Enter to Continue.");
+                    incorrectInput = true;
+                    Console.ReadLine();
+                }
+
+            } while (incorrectInput == true);
+            Console.Clear();
+
+            return possibleCategories[userSelection-1].ToLower(); //Returns the users selection from possibleCategories
+        }
 
         static void SearchSpotify(News.Rootobject news)
         {
-
             getSpotify();
             Console.WriteLine("Enter to start search");
             Console.ReadLine();
@@ -146,9 +228,9 @@ namespace SoftwareEngineering
             Dictionary<string, int> wordFreq = new Dictionary<string, int>();
             string[] desiredWords = { "fury", "rage", "outrage", "sex", "sexy", "fraud", "row", "attack", "football", "sport", "rugby", "pool", "roar", "cash", "kick", "stab", "punch", "hit", "suspect", "gunman", "extremist", "genocide", "death", "killed", "award", "medal", "funny", "royal", "queen", "prince", "king", "climate", "fined", "surprise", "labour", "conservative", "green", "brexit", "animal", "politics", "premier", "league", "celebrity", "firefighter", "policeman", "drama", "outbreak", "angrily", "netflix", "facebook", "google", "snapchat", "twitter", "dad", "mum", "father", "grandfather", "grandmother", "mother", "healthy", "genetics", "fundraising", "plastic"};
             string[] undesiredWords = { "a", "and", "or", "if", "i", "in", "claims", "expert", "by", "of", "it", "to", "news", "mail", "telegraph", "the", "also", "up", "down", "left", "right", "yes", "no", "from", "on", "off", "under", "with", "till", "than", "any", "every", "other", "some", "such", "come", "get", "give", "go", "keep", "let", "make", "put", "seem", "take", "do", "have", "say", "but", "though", "when", "where", "how", "why", "who", "far", "forward", "near", "now", "uk", "against", ".com", ".co.uk", "pro", "before", ",", ".", " ", "want", "me", "gone", "will", "only", "leave", "my", "you", "took", "your",  "that", "he", "be", "new", "deal", "at", "had", "she", "today", "its", "may", "is", "out", "general", "are", "both", "an", "what", "into", "has", "his", "for", "told", "was", "her", "after", "not", "says", "said", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "as", "could", "been", "else", "someone", "partner", "watch", "one", "two", "three", "four", "five", "weeks", "spent", "-", "", "once", "twice", "mother", "first", "second", "while", "chars", "image", "whats", "us", "caption", "citys", "unveiled"};
+
             for (int i = 0; i < 20; i++)
             {
-
                 Regex rgx = new Regex("[^a-zA-Z -]"); //Gets rid of all special characters
                 news.articles[i].content = rgx.Replace(news.articles[i].content ?? "", "");
                 foreach (string word in (news.articles[i].content).Split(' '))
@@ -162,10 +244,7 @@ namespace SoftwareEngineering
                     {
                         wordFreq.Add(wordL, 1); //if not in the list, add it
                     }
-                    
-
                 }
-
             }
 
             var sortedDict = from entry in wordFreq orderby entry.Value descending select entry; //sorts dictionary list
@@ -184,14 +263,9 @@ namespace SoftwareEngineering
             }
 
             Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine(" * How many songs would you like in the playlist?");
-            Console.Write(" > ");
-            int userSelection = Convert.ToInt16(Console.ReadLine());
-            
 
+            int playlistLength = getListLength();
 
-            
 
 
             //string[,] createdPlaylist = new string[userSelection,2];
@@ -202,11 +276,11 @@ namespace SoftwareEngineering
             {
                 Console.WriteLine(string.Format("Word = {0} | Freq = {1}", kvp.Key, kvp.Value));
                 SearchItem item = _spotify.SearchItems(kvp.Key, SearchType.Track);
-                for (int i = 0; i < userSelection/5; i++) //goes through each top word and gets the userselection/5 (equally distributed songs/word)
+                for (int i = 0; i < playlistLength/5; i++) //goes through each top word and gets the userselection/5 (equally distributed songs/word)
                 {
                     Song tempSong = new Song(); //creates new instance of the song class
                     tempSong.SongName = item.Tracks.Items[i].Name; //sets name
-                    tempSong.Artist = Convert.ToString(item.Tracks.Items[i].Artists[0]); //sets artist
+                    tempSong.Artist = Convert.ToString(item.Tracks.Items[i].Artists[0].Name); //sets artist
                     createdPlaylist.Add(tempSong); //adds song to playlist
                 }
             }
