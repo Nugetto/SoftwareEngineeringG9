@@ -594,3 +594,24 @@ C:\Users\User\Documents\Stuff\SoftwareEngineeringG9\SoftwareEngineering\Software
 C:\Users\User\Documents\Stuff\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csproj.CopyComplete
 C:\Users\User\Documents\Stuff\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.exe
 C:\Users\User\Documents\Stuff\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.pdb
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.exe.config
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.exe
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SoftwareEngineering.pdb
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\NewsAPI.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Newtonsoft.Json.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SpotifyAPI.Web.Auth.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SpotifyAPI.Web.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Unosquare.Labs.EmbedIO.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Unosquare.Swan.Lite.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\System.Net.Http.dll
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\NewsAPI.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Newtonsoft.Json.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SpotifyAPI.Web.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\SpotifyAPI.Web.Auth.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Unosquare.Labs.EmbedIO.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\bin\Debug\Unosquare.Swan.Lite.xml
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csprojAssemblyReference.cache
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csproj.CoreCompileInputs.cache
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.csproj.CopyComplete
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.exe
+C:\Users\computing\Downloads\New folder\SoftwareEngineeringG9\SoftwareEngineering\SoftwareEngineering\obj\Debug\SoftwareEngineering.pdb
