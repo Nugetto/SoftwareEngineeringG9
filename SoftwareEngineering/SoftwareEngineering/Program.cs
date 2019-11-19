@@ -280,17 +280,26 @@ namespace SoftwareEngineering
             //Dictionary<string, string> createdPlaylist = new Dictionary<string, string>();
             var createdPlaylist = new List<Song>(); //Creates new list of class song
 
-            foreach (KeyValuePair<string, int> kvp in top5words)
+			int playlistRemainder = playlistLength % 5;
+			int wordNumber = 0;
+			foreach (KeyValuePair<string, int> kvp in top5words)
             {
+				int extraSong = 0;
+				wordNumber++;
+				if (wordNumber <= playlistRemainder)
+				{
+					extraSong = 1;
+				}
                 Console.WriteLine(string.Format("Word = {0} | Freq = {1}", kvp.Key, kvp.Value));
                 SearchItem item = _spotify.SearchItems(kvp.Key, SearchType.Track);
-                for (int i = 0; i < playlistLength/5; i++) //goes through each top word and gets the userselection/5 (equally distributed songs/word)
+                for (int i = 0; i < (playlistLength/5)+extraSong; i++) //goes through each top word and gets the userselection/5 (equally distributed songs/word)
                 {
                     Song tempSong = new Song(); //creates new instance of the song class
                     tempSong.SongName = item.Tracks.Items[i].Name; //sets name
                     tempSong.Artist = Convert.ToString(item.Tracks.Items[i].Artists[0].Name); //sets artist
                     createdPlaylist.Add(tempSong); //adds song to playlist
                 }
+				
             }
 
 
