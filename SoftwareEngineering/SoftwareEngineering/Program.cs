@@ -227,12 +227,20 @@ namespace SoftwareEngineering
 
             Dictionary<string, int> wordFreq = new Dictionary<string, int>();
             string[] desiredWords = { "fury", "rage", "outrage", "sex", "sexy", "fraud", "row", "attack", "football", "sport", "rugby", "pool", "roar", "cash", "kick", "stab", "punch", "hit", "suspect", "gunman", "extremist", "genocide", "death", "killed", "award", "medal", "funny", "royal", "queen", "prince", "king", "climate", "fined", "surprise", "labour", "conservative", "green", "brexit", "animal", "politics", "premier", "league", "celebrity", "firefighter", "policeman", "drama", "outbreak", "angrily", "netflix", "facebook", "google", "snapchat", "twitter", "dad", "mum", "father", "grandfather", "grandmother", "mother", "healthy", "genetics", "fundraising", "plastic"};
-            string[] undesiredWords = { "a", "and", "or", "if", "i", "in", "claims", "expert", "by", "of", "it", "to", "news", "mail", "telegraph", "the", "also", "up", "down", "left", "right", "yes", "no", "from", "on", "off", "under", "with", "till", "than", "any", "every", "other", "some", "such", "come", "get", "give", "go", "keep", "let", "make", "put", "seem", "take", "do", "have", "say", "but", "though", "when", "where", "how", "why", "who", "far", "forward", "near", "now", "uk", "against", ".com", ".co.uk", "pro", "before", ",", ".", " ", "want", "me", "gone", "will", "only", "leave", "my", "you", "took", "your",  "that", "he", "be", "new", "deal", "at", "had", "she", "today", "its", "may", "is", "out", "general", "are", "both", "an", "what", "into", "has", "his", "for", "told", "was", "her", "after", "not", "says", "said", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "as", "could", "been", "else", "someone", "partner", "watch", "one", "two", "three", "four", "five", "weeks", "spent", "-", "", "once", "twice", "mother", "first", "second", "while", "chars", "image", "whats", "us", "caption", "citys", "unveiled"};
+            string[] undesiredWords = { "a", "and", "or", "if", "i", "in", "claims", "expert", "by", "of", "it", "to", "news", "mail", "telegraph", "the", "also", "up", "down", "left", "right", "yes", "no", "from", "on", "off", "under", "with", "till", "than", "any", "every", "other", "some", "such", "come", "get", "give", "go", "keep", "let", "make", "put", "seem", "take", "do", "have", "say", "but", "though", "when", "where", "how", "why", "who", "far", "forward", "near", "now", "uk", "against", ".com", ".co.uk", "pro", "before", ",", ".", " ", "want", "me", "gone", "will", "only", "leave", "my", "you", "took", "your",  "that", "he", "be", "new", "deal", "at", "had", "she", "today", "its", "may", "is", "out", "general", "are", "both", "an", "what", "into", "has", "his", "for", "told", "was", "her", "after", "not", "says", "said", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "as", "could", "been", "else", "someone", "partner", "watch", "one", "two", "three", "four", "five", "weeks", "spent", "-", "", "once", "twice", "mother", "first", "second", "while", "chars", "image", "whats", "us", "caption", "citys", "unveiled", "guardian", "bbc", "live"};
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Regex rgx = new Regex("[^a-zA-Z -]"); //Gets rid of all special characters
-                news.articles[i].content = rgx.Replace(news.articles[i].content ?? "", "");
+                if (news.articles[i].content == null)
+                {
+                    news.articles[i].content = rgx.Replace(news.articles[i].title ?? "", "");
+
+                } else
+                {
+                    news.articles[i].content = rgx.Replace(news.articles[i].content ?? "", "");
+
+                }
                 foreach (string word in (news.articles[i].content).Split(' '))
                 {
                     string wordL = (word).ToLower(); //puts everything in lower case
@@ -291,6 +299,7 @@ namespace SoftwareEngineering
             //Total ammount of songs/ 5 rounded up is the ammount of songs needed for each word
             //Might need to remove some random songs
 
+            Console.WriteLine("\n");
             foreach (Song song in createdPlaylist) //outputs all songs
             {
                 Console.WriteLine(string.Format("Song = {0}\nArtist = {1}\n\n", song.SongName, song.Artist));
